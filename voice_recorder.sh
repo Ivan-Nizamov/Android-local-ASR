@@ -1,7 +1,11 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+# Create recordings directory if it doesn't exist
+RECORDINGS_DIR="recordings"
+mkdir -p "$RECORDINGS_DIR"
+
 # Dynamic recorder - press any key to stop
-TEMP="rec_$(date +%H%M%S).wav"
+TEMP="$RECORDINGS_DIR/rec_$(date +%H%M%S).wav"
 
 echo "⏺️  Recording... (press any key to stop)"
 
@@ -25,10 +29,7 @@ wait $PID 2>/dev/null
 SIZE=$(du -h "$TEMP" | cut -f1)
 TIME=$(date +%H%M%S)
 DUR=$(printf "%02dm%02ds" $((SEC/60)) $((SEC%60)))
-FILE="${TIME}_${SIZE}_${DUR}.wav"
+FILE="$RECORDINGS_DIR/${TIME}_${SIZE}_${DUR}.wav"
 mv "$TEMP" "$FILE"
 
 echo -e "\n✓ Saved: $FILE"
-
-# Play
-termux-media-player play "$FILE" >/dev/null 2>&1
