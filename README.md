@@ -34,8 +34,8 @@ pkg install -y git curl ffmpeg bc coreutils findutils grep sed awk clang cmake m
 
 # Clone repo
 cd ~
-git clone https://github.com/Ivan-Nizamov/Android-local-ASR.git
-cd Android-local-ASR
+git clone https://github.com/ivan-nizamov/android-local-asr.git
+cd android-local-asr
 chmod +x improved.sh main.sh voice_recorder.sh
 
 # Build whisper.cpp
@@ -54,7 +54,7 @@ cd ../..
 ## 3) Run
 
 ```bash
-cd ~/Android-local-ASR
+cd ~/android-local-asr
 ./improved.sh
 ```
 
@@ -132,7 +132,7 @@ Edit `improved.sh`:
 ## 8) Cleanup
 
 ```bash
-rm -rf ~/Android-local-ASR
+rm -rf ~/android-local-asr
 ```
 
 ---
