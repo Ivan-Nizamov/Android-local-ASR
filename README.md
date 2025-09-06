@@ -22,7 +22,23 @@ Record audio on Android (Termux) with one keypress, auto-convert to 16-bit 16 kH
 
 ## 2) Automated setup
 
-Paste this into Termux after installing apps and granting permissions:
+You can use our installer script to automatically set up everything:
+
+```bash
+curl -O https://raw.githubusercontent.com/ivan-nizamov/android-local-asr/main/install.sh
+chmod +x install.sh
+./install.sh
+```
+
+Or if you want to choose which model to install:
+
+```bash
+curl -O https://raw.githubusercontent.com/ivan-nizamov/android-local-asr/main/install-advanced.sh
+chmod +x install-advanced.sh
+./install-advanced.sh
+```
+
+Alternatively, you can manually set up everything by pasting this into Termux after installing apps and granting permissions:
 
 ```bash
 # Setup storage access
@@ -72,7 +88,29 @@ Press any key to stop recording. The script will automatically:
 
 ---
 
-## 4) Directory Structure
+## 4) Installer Scripts
+
+We provide two installer scripts to automate the setup process:
+
+1. `install.sh` - Automatically installs all dependencies, clones the repo, builds whisper.cpp, and downloads the default small-q5_1 model.
+
+2. `install-advanced.sh` - Does the same as above but allows you to choose which model to download during installation.
+
+To use either script:
+```bash
+# Download the script
+curl -O https://raw.githubusercontent.com/ivan-nizamov/android-local-asr/main/install.sh
+
+# Make it executable
+chmod +x install.sh
+
+# Run it
+./install.sh
+```
+
+---
+
+## 5) Directory Structure
 
 * `recordings/` - Original recordings with metadata in filename
 * `whisper.cpp/converted-audio/` - Processed 16-bit WAV files
@@ -81,7 +119,7 @@ Press any key to stop recording. The script will automatically:
 
 ---
 
-## 5) Model Options
+## 6) Model Options
 
 Different models offer trade-offs between accuracy and speed:
 
@@ -101,7 +139,7 @@ bash ./download-ggml-model.sh MODEL_NAME
 
 ---
 
-## 6) Customize
+## 7) Customize
 
 Edit `improved.sh`:
 
@@ -111,7 +149,7 @@ Edit `improved.sh`:
 
 ---
 
-## 7) Troubleshooting
+## 8) Troubleshooting
 
 * **`termux-microphone-record: not found`** → Run `pkg install termux-api`
 * **Permission errors** → 
@@ -129,7 +167,7 @@ Edit `improved.sh`:
 
 ---
 
-## 8) Cleanup
+## 9) Cleanup
 
 ```bash
 rm -rf ~/android-local-asr
